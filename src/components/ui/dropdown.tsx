@@ -15,11 +15,17 @@ type DropdownRenderArgs = {
 };
 
 export function Dropdown({
+  className,
   align = "end",
+  triggerClassName,
+  menuClassName,
   trigger,
   children,
 }: {
+  className?: string;
   align?: "start" | "end";
+  triggerClassName?: string;
+  menuClassName?: string;
   trigger: (args: TriggerRenderArgs) => React.ReactNode;
   children: (args: DropdownRenderArgs) => React.ReactNode;
 }) {
@@ -67,19 +73,24 @@ export function Dropdown({
       "aria-haspopup": "menu",
       "aria-expanded": open,
       onClick: toggle,
+      className: cn(
+        "inline-flex h-9 w-full items-center justify-center rounded-xl border border-border bg-background/60 backdrop-blur transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:h-10",
+        triggerClassName,
+      ),
     },
   });
 
   return (
-    <div className="relative">
+    <div className={cn("relative inline-block w-9 sm:w-10", className)}>
       {triggerNode}
       {open ? (
         <div
           ref={setMenuEl}
           role="menu"
           className={cn(
-            "absolute top-full mt-2 w-44 rounded-2xl border border-border bg-background/95 p-1 shadow-lg backdrop-blur",
+            "absolute top-full right-0 mt-2 w-full rounded-xl border border-border bg-background/95 p-1.5 shadow-lg backdrop-blur",
             align === "end" ? "right-0" : "left-0",
+            menuClassName,
           )}
         >
           {children({ close })}
@@ -95,17 +106,23 @@ export function DropdownItem({
   close,
   className,
   disabled,
+  ariaLabel,
+  title,
 }: {
   children: React.ReactNode;
   onSelect: () => void;
   close: () => void;
   className?: string;
   disabled?: boolean;
+  ariaLabel?: string;
+  title?: string;
 }) {
   return (
     <button
       type="button"
       role="menuitem"
+      aria-label={ariaLabel}
+      title={title}
       disabled={disabled}
       onClick={() => {
         if (disabled) return;
@@ -113,7 +130,7 @@ export function DropdownItem({
         close();
       }}
       className={cn(
-        "flex w-full items-center gap-2 rounded-xl px-3 py-2 text-left text-sm text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50",
+        "grid h-9 w-full place-items-center rounded-lg text-xs font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 sm:h-10",
         className,
       )}
     >
@@ -121,4 +138,3 @@ export function DropdownItem({
     </button>
   );
 }
-
