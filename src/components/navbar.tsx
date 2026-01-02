@@ -7,6 +7,8 @@ import { site } from "@/content/site";
 import { texts } from "@/content/texts";
 import { useLanguage } from "@/components/language-provider";
 import { Button } from "@/components/ui/button";
+import { Dropdown, DropdownItem } from "@/components/ui/dropdown";
+import { MoonIcon, SunIcon } from "@/components/ui/icons";
 
 const SECTION_IDS = ["home", "about", "projects", "contact"] as const;
 type SectionId = (typeof SECTION_IDS)[number];
@@ -73,11 +75,13 @@ export function Navbar() {
     { id: "contact", label: t.nav.contact },
   ];
 
-  const themeLabel = !mounted
-    ? t.controls.theme
-    : theme === "dark"
-      ? t.controls.themeToLight
-      : t.controls.themeToDark;
+  const currentTheme = mounted ? (theme ?? "dark") : "dark";
+  const themeIcon =
+    currentTheme === "dark" ? (
+      <MoonIcon title={t.controls.themeToDark} />
+    ) : (
+      <SunIcon title={t.controls.themeToLight} />
+    );
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur">
@@ -115,43 +119,71 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <div className="hidden items-center rounded-full border border-border bg-background p-1 md:flex">
-            <button
-              type="button"
-              className={cn(
-                "h-9 rounded-full px-3 text-xs font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-                locale === "pl" ? "bg-muted" : "text-muted-foreground",
-              )}
-              onClick={() => setLocale("pl")}
-              aria-pressed={locale === "pl"}
-            >
-              PL
-            </button>
-            <button
-              type="button"
-              className={cn(
-                "h-9 rounded-full px-3 text-xs font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-                locale === "en" ? "bg-muted" : "text-muted-foreground",
-              )}
-              onClick={() => setLocale("en")}
-              aria-pressed={locale === "en"}
-            >
-              EN
-            </button>
-          </div>
-
-          <Button
-            variant="ghost"
-            size="sm"
-            type="button"
-            onClick={() => {
-              if (!mounted) return;
-              setTheme(theme === "dark" ? "light" : "dark");
-            }}
-            aria-label="Toggle theme"
+          <Dropdown
+            align="end"
+            trigger={({ buttonProps }) => (
+              <button
+                {...buttonProps}
+                aria-label={t.controls.language}
+                className="inline-flex h-10 w-12 items-center justify-center rounded-full border border-border bg-background/60 px-0 text-xs font-semibold text-foreground backdrop-blur transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              >
+                {locale.toUpperCase()}
+              </button>
+            )}
           >
-            {themeLabel}
-          </Button>
+            {({ close }) => (
+              <div className="w-28">
+                <DropdownItem
+                  close={close}
+                  onSelect={() => setLocale("pl")}
+                  className={cn(locale === "pl" && "bg-muted")}
+                >
+                  PL
+                </DropdownItem>
+                <DropdownItem
+                  close={close}
+                  onSelect={() => setLocale("en")}
+                  className={cn(locale === "en" && "bg-muted")}
+                >
+                  EN
+                </DropdownItem>
+              </div>
+            )}
+          </Dropdown>
+
+          <Dropdown
+            align="end"
+            trigger={({ buttonProps }) => (
+              <button
+                {...buttonProps}
+                aria-label={t.controls.theme}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background/60 px-0 text-foreground backdrop-blur transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              >
+                {themeIcon}
+              </button>
+            )}
+          >
+            {({ close }) => (
+              <div className="w-40">
+                <DropdownItem
+                  close={close}
+                  onSelect={() => setTheme("light")}
+                  className={cn(currentTheme === "light" && "bg-muted")}
+                  disabled={!mounted}
+                >
+                  <SunIcon /> {t.controls.themeToLight}
+                </DropdownItem>
+                <DropdownItem
+                  close={close}
+                  onSelect={() => setTheme("dark")}
+                  className={cn(currentTheme === "dark" && "bg-muted")}
+                  disabled={!mounted}
+                >
+                  <MoonIcon /> {t.controls.themeToDark}
+                </DropdownItem>
+              </div>
+            )}
+          </Dropdown>
 
           <Button
             variant="ghost"
@@ -173,34 +205,6 @@ export function Navbar() {
           className="border-t border-border bg-background/95 backdrop-blur md:hidden"
         >
           <div className="mx-auto flex w-full max-w-5xl flex-col gap-2 px-6 py-4">
-            <div className="flex items-center justify-between">
-              <p className="text-xs font-semibold text-muted-foreground">
-                {t.controls.language}
-              </p>
-              <div className="flex items-center rounded-full border border-border bg-background p-1">
-                <button
-                  type="button"
-                  className={cn(
-                    "h-9 rounded-full px-3 text-xs font-semibold transition-colors",
-                    locale === "pl" ? "bg-muted" : "text-muted-foreground",
-                  )}
-                  onClick={() => setLocale("pl")}
-                >
-                  PL
-                </button>
-                <button
-                  type="button"
-                  className={cn(
-                    "h-9 rounded-full px-3 text-xs font-semibold transition-colors",
-                    locale === "en" ? "bg-muted" : "text-muted-foreground",
-                  )}
-                  onClick={() => setLocale("en")}
-                >
-                  EN
-                </button>
-              </div>
-            </div>
-
             <div className="grid gap-1 pt-2">
               {navItems.map((item) => (
                 <a
