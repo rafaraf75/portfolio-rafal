@@ -52,16 +52,17 @@ export const projects: Project[] = [
     },
   },
   {
-    title: "kurs-hiszpańskiego-ai",
+    title: "blog-app",
     descriptionPL:
-      "AI edukacja: generator ćwiczeń i materiałów do nauki języka, z naciskiem na prosty UX.",
+      "Aplikacja blogowa z nowoczesnym UI: wpisy, nawigacja i dopracowany layout pod publikację treści.",
     descriptionEN:
-      "AI education: generates exercises and learning materials with a simple UX.",
+      "Blog application with a modern UI: posts, navigation, and a polished content-focused layout.",
     descriptionES:
-      "Educación con IA: genera ejercicios y materiales de aprendizaje con un UX simple.",
-    tech: ["Next.js", "OpenAI API", "TypeScript"],
+      "Aplicación de blog con UI moderna: posts, navegación y un layout pulido para contenido.",
+    tech: ["Next.js", "TypeScript", "Tailwind", "Vercel"],
     links: {
-      source: "https://github.com/your-handle/kurs-hiszpanskiego-ai",
+      source: "https://github.com/rafaraf75/blog-app",
+      demo: "https://blog-app-black-alpha.vercel.app/",
     },
   },
   {
@@ -91,3 +92,4 @@ export const projects: Project[] = [
     },
   },
 ];
+
