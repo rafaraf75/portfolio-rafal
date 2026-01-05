@@ -78,5 +78,17 @@ export const projects: Project[] = [
       source: "https://github.com/your-handle/kurs-hiszpanskiego-ai",
     },
   },
+  {
+    title: "Agent AI",
+    descriptionPL:
+      "Lokalny generator postów z UI w przeglądarce. Wysyła dane do webhooka (np. n8n) i odbiera gotową treść; konfiguracja w `.env` i szybkie uruchomienie skrótem.",
+    descriptionEN:
+      "Local post generator with a browser UI. Sends data to a webhook (e.g. n8n) and receives generated content; env-based config and quick start script.",
+    descriptionES:
+      "Generador local de publicaciones con interfaz en el navegador. Envía datos a un webhook (p. ej. n8n) y recibe el contenido; configuración en `.env` y arranque rápido con script.",
+    tech: ["Node.js", "n8n", "Webhooks", "HTML"],
+    links: {
+      source: "https://github.com/rafaraf75/agent-ai",
+    },
+  },
 ];
-
