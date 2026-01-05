@@ -3,7 +3,9 @@
 import * as React from "react";
 import { useLanguage } from "@/components/language-provider";
 import { texts } from "@/content/texts";
+import { site } from "@/content/site";
 import { Card } from "@/components/ui/card";
+import { Tag } from "@/components/ui/tag";
 import { SectionShell } from "@/components/sections/section-shell";
 
 export function AboutSection() {
@@ -13,12 +15,32 @@ export function AboutSection() {
   return (
     <SectionShell id="about">
       <div className="flex flex-col gap-10">
-        <div className="flex flex-col gap-3">
-          <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-            {t.about.title}
-          </h2>
-          <p className="max-w-3xl text-muted-foreground">{t.about.p1}</p>
-          <p className="max-w-3xl text-muted-foreground">{t.about.p2}</p>
+        <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
+          <div className="flex flex-col gap-3">
+            <p className="text-xs font-semibold tracking-widest text-muted-foreground">
+              {locale === "pl"
+                ? "TWORZĘ NOWOCZESNE APLIKACJE"
+                : locale === "es"
+                  ? "CREO APLICACIONES MODERNAS"
+                  : "CRAFTING MODERN APPS"}
+            </p>
+            <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+              {t.about.title}
+            </h2>
+            <p className="max-w-3xl text-muted-foreground">{t.about.p1}</p>
+            <p className="max-w-3xl text-muted-foreground">{t.about.p2}</p>
+          </div>
+
+          <Card className="p-6">
+            <p className="text-xs font-semibold tracking-widest text-muted-foreground">
+              {t.about.skillsTitle.toUpperCase()}
+            </p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {site.skills.map((skill) => (
+                <Tag key={skill}>{skill}</Tag>
+              ))}
+            </div>
+          </Card>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2">

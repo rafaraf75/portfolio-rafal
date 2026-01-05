@@ -24,7 +24,9 @@ export function LanguageProvider({
 
   React.useEffect(() => {
     const stored = window.localStorage.getItem(STORAGE_KEY);
-    if (stored === "pl" || stored === "en") setLocaleState(stored);
+    if (stored === "pl" || stored === "en" || stored === "es") {
+      setLocaleState(stored);
+    }
   }, []);
 
   React.useEffect(() => {
@@ -37,7 +39,7 @@ export function LanguageProvider({
   }, []);
 
   const toggleLocale = React.useCallback(() => {
-    setLocaleState((prev) => (prev === "pl" ? "en" : "pl"));
+    setLocaleState((prev) => (prev === "pl" ? "en" : prev === "en" ? "es" : "pl"));
   }, []);
 
   const value = React.useMemo(
@@ -57,4 +59,3 @@ export function useLanguage(): LanguageContextValue {
   if (!ctx) throw new Error("useLanguage must be used within LanguageProvider");
   return ctx;
 }
-

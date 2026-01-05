@@ -25,7 +25,11 @@ export function ProjectsSection() {
         <div className="grid gap-4 md:grid-cols-2">
           {projects.map((project) => {
             const description =
-              locale === "pl" ? project.descriptionPL : project.descriptionEN;
+              locale === "pl"
+                ? project.descriptionPL
+                : locale === "es"
+                  ? project.descriptionES
+                  : project.descriptionEN;
             return (
               <Card key={project.title} className="flex flex-col p-6">
                 <div className="flex flex-col gap-2">
@@ -71,4 +75,3 @@ export function ProjectsSection() {
     </SectionShell>
   );
 }
-

@@ -5,7 +5,6 @@ import { site } from "@/content/site";
 import { texts } from "@/content/texts";
 import { useLanguage } from "@/components/language-provider";
 import { Button } from "@/components/ui/button";
-import { Tag } from "@/components/ui/tag";
 import { SectionShell } from "@/components/sections/section-shell";
 
 function scrollToId(id: string) {
@@ -26,23 +25,20 @@ export function HeroSection() {
           <div className="absolute -bottom-40 right-10 h-72 w-72 rounded-full bg-foreground/10 blur-3xl" />
         </div>
 
-        <div className="relative flex flex-col gap-8">
-          <div className="flex flex-col gap-3">
+        <div className="relative flex flex-col items-center gap-8 text-center">
+          <div className="flex flex-col items-center gap-3">
+            <p className="text-xs font-semibold tracking-widest text-muted-foreground">
+              {t.hero.hello.toUpperCase()}
+            </p>
+            <h1 className="text-balance text-4xl font-semibold tracking-tight sm:text-6xl">
+              {site.name}
+            </h1>
             <p className="text-sm font-medium text-muted-foreground">
               {site.role}
             </p>
-            <h1 className="text-balance text-4xl font-semibold tracking-tight sm:text-5xl">
-              {site.name}
-            </h1>
             <p className="max-w-2xl text-pretty text-lg leading-8 text-muted-foreground">
               {t.hero.lead}
             </p>
-          </div>
-
-          <div className="flex flex-wrap gap-2">
-            {site.skills.map((skill) => (
-              <Tag key={skill}>{skill}</Tag>
-            ))}
           </div>
 
           <div className="flex flex-col gap-3 sm:flex-row">
@@ -58,4 +54,3 @@ export function HeroSection() {
     </SectionShell>
   );
 }
-

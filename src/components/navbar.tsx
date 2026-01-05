@@ -143,6 +143,13 @@ export function Navbar() {
                 >
                   EN
                 </DropdownItem>
+                <DropdownItem
+                  close={close}
+                  onSelect={() => setLocale("es")}
+                  className={cn(locale === "es" && "bg-muted")}
+                >
+                  ES
+                </DropdownItem>
               </div>
             )}
           </Dropdown>
