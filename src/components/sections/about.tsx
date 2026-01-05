@@ -29,6 +29,7 @@ export function AboutSection() {
             </h2>
             <p className="max-w-3xl text-muted-foreground">{t.about.p1}</p>
             <p className="max-w-3xl text-muted-foreground">{t.about.p2}</p>
+            <p className="max-w-3xl text-muted-foreground">{t.about.p3}</p>
           </div>
 
           <div className="grid gap-4">

@@ -32,6 +32,7 @@ export type Texts = {
     };
     p1: string;
     p2: string;
+    p3: string;
     cards: Array<{
       title: string;
       body: string;
@@ -98,6 +99,7 @@ export const texts: Record<Locale, Texts> = {
       },
       p1: "Tworzę aplikacje end‑to‑end: od UI, przez API, po bazę danych i wdrożenie. Lubię pracę nad produktem, gdzie liczą się detale, wydajność i czytelny kod.",
       p2: "Najczęściej pracuję z React/Next.js, TypeScript, Node/Express i .NET. Dbam o UX, dostępność (a11y) i SEO, a także o stabilne integracje z usługami zewnętrznymi.",
+      p3: "Buduję także rozwiązania z AI (np. workflow z agentami i integracje z API OpenAI) oraz projekty wielojęzyczne (i18n) — z naciskiem na spójny design system i łatwe utrzymanie.",
       cards: [
         {
           title: "UI",
@@ -169,6 +171,7 @@ export const texts: Record<Locale, Texts> = {
       },
       p1: "I build end‑to‑end applications: UI, APIs, databases, and deployments. I enjoy product work where details, performance, and readable code matter.",
       p2: "Most often I work with React/Next.js, TypeScript, Node/Express, and .NET. I care about UX, accessibility, SEO, and stable integrations with external services.",
+      p3: "I also build AI-powered features (agent workflows and OpenAI API integrations) and multilingual products (i18n), with a focus on a maintainable design system and clean DX.",
       cards: [
         {
           title: "UI",
@@ -240,6 +243,7 @@ export const texts: Record<Locale, Texts> = {
       },
       p1: "Creo aplicaciones end‑to‑end: desde la interfaz, pasando por la API, hasta la base de datos y el despliegue. Me gusta el trabajo de producto donde importan los detalles, el rendimiento y un código claro.",
       p2: "Trabajo principalmente con React/Next.js, TypeScript, Node/Express y .NET. Cuido la UX, la accesibilidad (a11y), el SEO y las integraciones estables con servicios externos.",
+      p3: "También construyo soluciones con IA (workflows con agentes e integraciones con la API de OpenAI) y productos multilingües (i18n), con foco en un sistema de diseño mantenible y una buena DX.",
       cards: [
         {
           title: "UI",
