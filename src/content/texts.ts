@@ -23,6 +23,13 @@ export type Texts = {
   about: {
     title: string;
     skillsTitle: string;
+    educationTitle: string;
+    education: {
+      school: string;
+      program: string;
+      years: string;
+      location: string;
+    };
     p1: string;
     p2: string;
     cards: Array<{
@@ -81,6 +88,14 @@ export const texts: Record<Locale, Texts> = {
     about: {
       title: "O mnie",
       skillsTitle: "Technologie",
+      educationTitle: "Edukacja",
+      education: {
+        school:
+          "Wyższa Szkoła Biznesu — National Louis University w Nowym Sączu",
+        program: "Programista Aplikacji Biznesowych",
+        years: "2022–2025",
+        location: "Nowy Sącz, PL",
+      },
       p1: "Tworzę aplikacje end‑to‑end: od UI, przez API, po bazę danych i wdrożenie. Lubię pracę nad produktem, gdzie liczą się detale, wydajność i czytelny kod.",
       p2: "Najczęściej pracuję z React/Next.js, TypeScript, Node/Express i .NET. Dbam o UX, dostępność (a11y) i SEO, a także o stabilne integracje z usługami zewnętrznymi.",
       cards: [
@@ -145,6 +160,13 @@ export const texts: Record<Locale, Texts> = {
     about: {
       title: "About",
       skillsTitle: "Core skills",
+      educationTitle: "Education",
+      education: {
+        school: "WSB–NLU (National Louis University) in Nowy Sącz",
+        program: "Business Applications Developer",
+        years: "2022–2025",
+        location: "Nowy Sącz, PL",
+      },
       p1: "I build end‑to‑end applications: UI, APIs, databases, and deployments. I enjoy product work where details, performance, and readable code matter.",
       p2: "Most often I work with React/Next.js, TypeScript, Node/Express, and .NET. I care about UX, accessibility, SEO, and stable integrations with external services.",
       cards: [
@@ -209,6 +231,13 @@ export const texts: Record<Locale, Texts> = {
     about: {
       title: "Sobre mí",
       skillsTitle: "Tecnologías",
+      educationTitle: "Educación",
+      education: {
+        school: "WSB–NLU (National Louis University) en Nowy Sącz",
+        program: "Desarrollador de aplicaciones de negocio",
+        years: "2022–2025",
+        location: "Nowy Sącz, PL",
+      },
       p1: "Creo aplicaciones end‑to‑end: desde la interfaz, pasando por la API, hasta la base de datos y el despliegue. Me gusta el trabajo de producto donde importan los detalles, el rendimiento y un código claro.",
       p2: "Trabajo principalmente con React/Next.js, TypeScript, Node/Express y .NET. Cuido la UX, la accesibilidad (a11y), el SEO y las integraciones estables con servicios externos.",
       cards: [
@@ -252,4 +281,3 @@ export const texts: Record<Locale, Texts> = {
     },
   },
 };
-

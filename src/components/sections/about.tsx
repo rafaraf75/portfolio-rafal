@@ -4,8 +4,8 @@ import * as React from "react";
 import { useLanguage } from "@/components/language-provider";
 import { texts } from "@/content/texts";
 import { site } from "@/content/site";
-import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { GradientCard } from "@/components/ui/gradient-card";
 import { SectionShell } from "@/components/sections/section-shell";
 
 export function AboutSection() {
@@ -31,24 +31,41 @@ export function AboutSection() {
             <p className="max-w-3xl text-muted-foreground">{t.about.p2}</p>
           </div>
 
-          <Card className="p-6">
-            <p className="text-xs font-semibold tracking-widest text-muted-foreground">
-              {t.about.skillsTitle.toUpperCase()}
-            </p>
-            <div className="mt-4 flex flex-wrap gap-2">
-              {site.skills.map((skill) => (
-                <Badge key={skill}>{skill}</Badge>
-              ))}
-            </div>
-          </Card>
+          <div className="grid gap-4">
+            <GradientCard innerClassName="p-6">
+              <p className="text-xs font-semibold tracking-widest text-muted-foreground">
+                {t.about.skillsTitle.toUpperCase()}
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {site.skills.map((skill) => (
+                  <Badge key={skill}>{skill}</Badge>
+                ))}
+              </div>
+            </GradientCard>
+
+            <GradientCard innerClassName="p-6">
+              <p className="text-xs font-semibold tracking-widest text-muted-foreground">
+                {t.about.educationTitle.toUpperCase()}
+              </p>
+              <div className="mt-4 grid gap-2">
+                <p className="text-sm font-semibold">{t.about.education.program}</p>
+                <p className="text-sm text-muted-foreground">
+                  {t.about.education.school}
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  {t.about.education.location} · {t.about.education.years}
+                </p>
+              </div>
+            </GradientCard>
+          </div>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
           {t.about.cards.map((card) => (
-            <Card key={card.title} className="p-6">
+            <GradientCard key={card.title} innerClassName="p-6">
               <h3 className="text-sm font-semibold">{card.title}</h3>
               <p className="mt-2 text-sm text-muted-foreground">{card.body}</p>
-            </Card>
+            </GradientCard>
           ))}
         </div>
       </div>
