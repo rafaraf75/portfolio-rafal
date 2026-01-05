@@ -61,9 +61,13 @@ export function AboutSection() {
           </div>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid gap-4 sm:grid-cols-2 sm:items-stretch">
           {t.about.cards.map((card) => (
-            <GradientCard key={card.title} innerClassName="p-6">
+            <GradientCard
+              key={card.title}
+              className="h-full"
+              innerClassName="flex h-full flex-col p-6"
+            >
               <h3 className="text-sm font-semibold">{card.title}</h3>
               <p className="mt-2 text-sm text-muted-foreground">{card.body}</p>
             </GradientCard>
