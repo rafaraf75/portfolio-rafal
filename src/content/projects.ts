@@ -35,7 +35,7 @@ export const projects: Project[] = [
       "App para taller en ASP.NET Core MVC: clientes, órdenes, historial de reparaciones y panel admin.",
     tech: ["ASP.NET Core", "MVC", "C#", "SQL"],
     links: {
-      source: "https://github.com/your-handle/autofix",
+      source: "https://github.com/rafaraf75/autofix",
     },
   },
   {
