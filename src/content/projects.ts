@@ -21,8 +21,8 @@ export const projects: Project[] = [
       "Starter de producto en Next.js: modo oscuro, i18n, SEO y componentes UI para iterar rápido.",
     tech: ["Next.js", "TypeScript", "SEO", "i18n", "next-themes"],
     links: {
-      source: "https://github.com/your-handle/ai-site-mvp",
-      demo: "https://example.com",
+      source: "https://github.com/rafaraf75/ai-site-mvp",
+      demo: "https://raflabsite.vercel.app/pl",
     },
   },
   {
@@ -91,4 +91,3 @@ export const projects: Project[] = [
     },
   },
 ];
-
