@@ -39,7 +39,7 @@ export function ProjectsSection() {
                   <h3 className="text-lg font-semibold tracking-tight">
                     {project.title}
                   </h3>
-                  <p className="text-sm leading-6 text-muted-foreground">
+                  <p className="line-clamp-3 min-h-[4.5rem] text-sm leading-6 text-muted-foreground">
                     {description}
                   </p>
                 </div>
@@ -50,7 +50,7 @@ export function ProjectsSection() {
                   ))}
                 </div>
 
-                <div className="mt-6 flex flex-wrap gap-3">
+                <div className="mt-auto flex min-h-10 flex-wrap gap-3 pt-6">
                   {project.links.demo ? (
                     <a
                       className="inline-flex h-10 items-center justify-center rounded-full bg-foreground px-4 text-sm font-medium text-background transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
