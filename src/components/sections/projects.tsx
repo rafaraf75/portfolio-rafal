@@ -4,8 +4,8 @@ import * as React from "react";
 import { projects } from "@/content/projects";
 import { texts } from "@/content/texts";
 import { useLanguage } from "@/components/language-provider";
-import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { GradientCard } from "@/components/ui/gradient-card";
 import { SectionShell } from "@/components/sections/section-shell";
 
 export function ProjectsSection() {
@@ -31,7 +31,10 @@ export function ProjectsSection() {
                   ? project.descriptionES
                   : project.descriptionEN;
             return (
-              <Card key={project.title} className="flex flex-col p-6">
+              <GradientCard
+                key={project.title}
+                innerClassName="flex flex-col p-6"
+              >
                 <div className="flex flex-col gap-2">
                   <h3 className="text-lg font-semibold tracking-tight">
                     {project.title}
@@ -67,7 +70,7 @@ export function ProjectsSection() {
                     {t.projects.source}
                   </a>
                 </div>
-              </Card>
+              </GradientCard>
             );
           })}
         </div>
