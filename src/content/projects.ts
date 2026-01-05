@@ -102,7 +102,7 @@ export const projects: Project[] = [
       "Marketplace/comunidad fullstack: anuncios, perfiles, búsqueda y panel de usuario.",
     tech: ["Next.js", "TypeScript", "Node.js", "PostgreSQL", "Tailwind"],
     links: {
-      source: "https://github.com/your-handle/gazdodechy",
+      source: "https://github.com/rafaraf75/GazDoDechy",
     },
   },
   {
@@ -115,7 +115,7 @@ export const projects: Project[] = [
       ".NET MAUI + ASP.NET Core REST API: app móvil con backend, autenticación y sincronización.",
     tech: [".NET MAUI", "ASP.NET Core", "C#", "REST API"],
     links: {
-      source: "https://github.com/your-handle/naspontanie",
+      source: "https://github.com/rafaraf75/NaSpontanie",
     },
   },
 ];
