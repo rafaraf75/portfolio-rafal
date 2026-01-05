@@ -66,6 +66,33 @@ export const projects: Project[] = [
     },
   },
   {
+    title: "BookApp",
+    descriptionPL:
+      "Aplikacja do zarządzania książkami: przegląd, szczegóły, szybka nawigacja i dopracowany UI.",
+    descriptionEN:
+      "Book management app: browsing, details, fast navigation, and a polished UI.",
+    descriptionES:
+      "App de gestión de libros: listado, detalles, navegación rápida y UI pulida.",
+    tech: ["Next.js", "TypeScript", "Tailwind", "Vercel"],
+    links: {
+      source: "https://github.com/rafaraf75/BookApp",
+      demo: "https://book-app-ten-omega.vercel.app/",
+    },
+  },
+  {
+    title: "waiter-app",
+    descriptionPL:
+      "Aplikacja dla obsługi restauracji: workflow zamówień i czytelny panel do pracy w biegu.",
+    descriptionEN:
+      "Restaurant waiter app: order workflow and a clear dashboard for on-the-go work.",
+    descriptionES:
+      "App para camareros: flujo de pedidos y un panel claro para trabajar en movimiento.",
+    tech: ["TypeScript", "React", "UI", "Workflow"],
+    links: {
+      source: "https://github.com/rafaraf75/waiter-app",
+    },
+  },
+  {
     title: "GazDoDechy",
     descriptionPL:
       "Fullstack marketplace/community: ogłoszenia, profile, wyszukiwanie i panel użytkownika.",
@@ -92,4 +119,3 @@ export const projects: Project[] = [
     },
   },
 ];
-
