@@ -5,7 +5,7 @@ import { projects } from "@/content/projects";
 import { texts } from "@/content/texts";
 import { useLanguage } from "@/components/language-provider";
 import { Card } from "@/components/ui/card";
-import { Tag } from "@/components/ui/tag";
+import { Badge } from "@/components/ui/badge";
 import { SectionShell } from "@/components/sections/section-shell";
 
 export function ProjectsSection() {
@@ -43,7 +43,7 @@ export function ProjectsSection() {
 
                 <div className="mt-4 flex flex-wrap gap-2">
                   {project.tech.map((tech) => (
-                    <Tag key={tech}>{tech}</Tag>
+                    <Badge key={tech}>{tech}</Badge>
                   ))}
                 </div>
 

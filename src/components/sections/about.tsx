@@ -5,7 +5,7 @@ import { useLanguage } from "@/components/language-provider";
 import { texts } from "@/content/texts";
 import { site } from "@/content/site";
 import { Card } from "@/components/ui/card";
-import { Tag } from "@/components/ui/tag";
+import { Badge } from "@/components/ui/badge";
 import { SectionShell } from "@/components/sections/section-shell";
 
 export function AboutSection() {
@@ -37,7 +37,7 @@ export function AboutSection() {
             </p>
             <div className="mt-4 flex flex-wrap gap-2">
               {site.skills.map((skill) => (
-                <Tag key={skill}>{skill}</Tag>
+                <Badge key={skill}>{skill}</Badge>
               ))}
             </div>
           </Card>

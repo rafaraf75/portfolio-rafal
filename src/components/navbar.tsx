@@ -7,8 +7,13 @@ import { site } from "@/content/site";
 import { texts } from "@/content/texts";
 import { useLanguage } from "@/components/language-provider";
 import { Button } from "@/components/ui/button";
-import { Dropdown, DropdownItem } from "@/components/ui/dropdown";
-import { MoonIcon, SunIcon } from "@/components/ui/icons";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Moon, Sun } from "lucide-react";
 
 const SECTION_IDS = ["home", "about", "projects", "contact"] as const;
 type SectionId = (typeof SECTION_IDS)[number];
@@ -78,9 +83,9 @@ export function Navbar() {
   const currentTheme = mounted ? (theme ?? "dark") : "dark";
   const themeIcon =
     currentTheme === "dark" ? (
-      <MoonIcon title={t.controls.themeToDark} />
+      <Moon className="h-4 w-4" aria-hidden="true" />
     ) : (
-      <SunIcon title={t.controls.themeToLight} />
+      <Sun className="h-4 w-4" aria-hidden="true" />
     );
 
   return (
@@ -119,74 +124,81 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Dropdown
-            align="end"
-            trigger={({ buttonProps }) => (
-              <button {...buttonProps} aria-label={t.controls.language}>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button
+                type="button"
+                aria-label={t.controls.language}
+                aria-haspopup="menu"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-border bg-background/60 text-xs font-semibold backdrop-blur transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:h-10 sm:w-10"
+              >
                 {locale.toUpperCase()}
               </button>
-            )}
-          >
-            {({ close }) => (
-              <div className="grid gap-1">
-                <DropdownItem
-                  close={close}
-                  onSelect={() => setLocale("pl")}
-                  className={cn(locale === "pl" && "bg-muted")}
-                >
-                  PL
-                </DropdownItem>
-                <DropdownItem
-                  close={close}
-                  onSelect={() => setLocale("en")}
-                  className={cn(locale === "en" && "bg-muted")}
-                >
-                  EN
-                </DropdownItem>
-                <DropdownItem
-                  close={close}
-                  onSelect={() => setLocale("es")}
-                  className={cn(locale === "es" && "bg-muted")}
-                >
-                  ES
-                </DropdownItem>
-              </div>
-            )}
-          </Dropdown>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent
+              align="end"
+              sideOffset={8}
+              className="w-9 sm:w-10"
+            >
+              <DropdownMenuItem
+                onSelect={() => setLocale("pl")}
+                className={cn(locale === "pl" && "bg-muted")}
+              >
+                PL
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onSelect={() => setLocale("en")}
+                className={cn(locale === "en" && "bg-muted")}
+              >
+                EN
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onSelect={() => setLocale("es")}
+                className={cn(locale === "es" && "bg-muted")}
+              >
+                ES
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
 
-          <Dropdown
-            align="end"
-            trigger={({ buttonProps }) => (
-              <button {...buttonProps} aria-label={t.controls.theme}>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button
+                type="button"
+                aria-label={t.controls.theme}
+                aria-haspopup="menu"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-border bg-background/60 backdrop-blur transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:h-10 sm:w-10"
+              >
                 {themeIcon}
               </button>
-            )}
-          >
-            {({ close }) => (
-              <div className="grid gap-1">
-                <DropdownItem
-                  close={close}
-                  onSelect={() => setTheme("light")}
-                  className={cn(currentTheme === "light" && "bg-muted")}
-                  disabled={!mounted}
-                  ariaLabel={t.controls.themeToLight}
-                  title={t.controls.themeToLight}
-                >
-                  <SunIcon />
-                </DropdownItem>
-                <DropdownItem
-                  close={close}
-                  onSelect={() => setTheme("dark")}
-                  className={cn(currentTheme === "dark" && "bg-muted")}
-                  disabled={!mounted}
-                  ariaLabel={t.controls.themeToDark}
-                  title={t.controls.themeToDark}
-                >
-                  <MoonIcon />
-                </DropdownItem>
-              </div>
-            )}
-          </Dropdown>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent
+              align="end"
+              sideOffset={8}
+              className="w-9 sm:w-10"
+            >
+              <DropdownMenuItem
+                onSelect={() => setTheme("light")}
+                disabled={!mounted}
+                className={cn(currentTheme === "light" && "bg-muted")}
+                aria-label={t.controls.themeToLight}
+                title={t.controls.themeToLight}
+              >
+                <Sun className="h-4 w-4" aria-hidden="true" />
+                <span className="sr-only">{t.controls.themeToLight}</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onSelect={() => setTheme("dark")}
+                disabled={!mounted}
+                className={cn(currentTheme === "dark" && "bg-muted")}
+                aria-label={t.controls.themeToDark}
+                title={t.controls.themeToDark}
+              >
+                <Moon className="h-4 w-4" aria-hidden="true" />
+                <span className="sr-only">{t.controls.themeToDark}</span>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
 
           <Button
             variant="ghost"
