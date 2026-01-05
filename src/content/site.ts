@@ -11,15 +11,15 @@ export type SiteSeo = {
 export const site = {
   name: "Rafał Łabuński",
   role: "Fullstack Developer / Software Engineer",
-  email: "rafal@example.com",
+  email: "rafallabunski@gmail.com",
   socials: {
     github: {
       label: "GitHub",
-      href: "https://github.com/your-handle",
+      href: "https://github.com/rafaraf75",
     },
     linkedin: {
       label: "LinkedIn",
-      href: "https://www.linkedin.com/in/your-handle/",
+      href: "https://www.linkedin.com/in/rafa%C5%82-%C5%82abu%C5%84ski-300324206/",
     },
   } satisfies Record<string, SocialLink>,
   seo: {

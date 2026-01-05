@@ -5,8 +5,12 @@ import { useLanguage } from "@/components/language-provider";
 import { texts } from "@/content/texts";
 import { site } from "@/content/site";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { GradientCard } from "@/components/ui/gradient-card";
 import { SectionShell } from "@/components/sections/section-shell";
+import { Github, Linkedin, Mail } from "lucide-react";
 
 type FormState = {
   name: string;
@@ -83,118 +87,165 @@ export function ContactSection() {
   return (
     <SectionShell id="contact" className="pb-28">
       <div className="flex flex-col gap-10">
-        <div className="flex flex-col gap-3">
-          <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+        <div className="mx-auto flex max-w-3xl flex-col items-center gap-4 text-center">
+          <p className="text-xs font-semibold tracking-widest text-muted-foreground">
+            {t.contact.kicker.toUpperCase()}
+          </p>
+          <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-5xl">
             {t.contact.title}
           </h2>
-          <p className="max-w-3xl text-muted-foreground">{t.contact.subtitle}</p>
+          <p className="text-pretty text-muted-foreground">{t.contact.subtitle}</p>
+          <p className="text-sm text-muted-foreground">
+            {t.contact.preferEmail}{" "}
+            <a
+              className="font-medium underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              href={`mailto:${site.email}`}
+            >
+              {site.email}
+            </a>
+          </p>
         </div>
 
         {endpoint ? (
-          <Card className="p-6">
-            <form className="grid gap-4" onSubmit={onSubmit} noValidate>
-              <div className="grid gap-2">
-                <label className="text-sm font-medium" htmlFor="name">
-                  {t.contact.form.name}
-                </label>
-                <input
-                  id="name"
-                  name="name"
-                  value={form.name}
-                  onChange={onChange("name")}
-                  className="h-12 rounded-xl border border-border bg-background px-4 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                  aria-invalid={Boolean(errors.name)}
-                />
-                {errors.name ? (
-                  <p className="text-sm text-muted-foreground">{errors.name}</p>
-                ) : null}
-              </div>
+          <div className="mx-auto w-full max-w-3xl">
+            <GradientCard innerClassName="p-6 sm:p-8">
+              <form className="grid gap-5" onSubmit={onSubmit} noValidate>
+                <div className="grid gap-2">
+                  <Label htmlFor="name">{t.contact.form.name}</Label>
+                  <Input
+                    id="name"
+                    name="name"
+                    value={form.name}
+                    onChange={onChange("name")}
+                    placeholder={locale === "pl" ? "Jan Kowalski" : locale === "es" ? "Juan Pérez" : "John Doe"}
+                    aria-invalid={Boolean(errors.name)}
+                  />
+                  {errors.name ? (
+                    <p className="text-sm text-muted-foreground">{errors.name}</p>
+                  ) : null}
+                </div>
 
-              <div className="grid gap-2">
-                <label className="text-sm font-medium" htmlFor="email">
-                  {t.contact.form.email}
-                </label>
-                <input
-                  id="email"
-                  name="email"
-                  value={form.email}
-                  onChange={onChange("email")}
-                  className="h-12 rounded-xl border border-border bg-background px-4 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                  aria-invalid={Boolean(errors.email)}
-                />
-                {errors.email ? (
-                  <p className="text-sm text-muted-foreground">{errors.email}</p>
-                ) : null}
-              </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="email">{t.contact.form.email}</Label>
+                  <Input
+                    id="email"
+                    name="email"
+                    value={form.email}
+                    onChange={onChange("email")}
+                    placeholder="name@example.com"
+                    aria-invalid={Boolean(errors.email)}
+                  />
+                  {errors.email ? (
+                    <p className="text-sm text-muted-foreground">{errors.email}</p>
+                  ) : null}
+                </div>
 
-              <div className="grid gap-2">
-                <label className="text-sm font-medium" htmlFor="message">
-                  {t.contact.form.message}
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={form.message}
-                  onChange={onChange("message")}
-                  className="min-h-32 resize-y rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                  aria-invalid={Boolean(errors.message)}
-                />
-                {errors.message ? (
-                  <p className="text-sm text-muted-foreground">
-                    {errors.message}
-                  </p>
-                ) : null}
-              </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="message">{t.contact.form.message}</Label>
+                  <Textarea
+                    id="message"
+                    name="message"
+                    value={form.message}
+                    onChange={onChange("message")}
+                    placeholder={
+                      locale === "pl"
+                        ? "Opisz krótko cel, termin i zakres."
+                        : locale === "es"
+                          ? "Describe brevemente el objetivo, plazo y alcance."
+                          : "Briefly describe goals, timeline, and scope."
+                    }
+                    aria-invalid={Boolean(errors.message)}
+                  />
+                  {errors.message ? (
+                    <p className="text-sm text-muted-foreground">
+                      {errors.message}
+                    </p>
+                  ) : null}
+                </div>
 
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <Button type="submit" disabled={status === "sending"}>
-                  {status === "sending"
-                    ? t.contact.form.sending
-                    : t.contact.form.submit}
-                </Button>
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                  <p className="text-sm text-muted-foreground">{t.contact.consent}</p>
+                  <Button type="submit" disabled={status === "sending"}>
+                    {status === "sending"
+                      ? t.contact.form.sending
+                      : t.contact.form.submit}
+                  </Button>
+                </div>
+
                 <div className="text-sm text-muted-foreground" role="status">
                   {status === "success" ? t.contact.form.success : null}
                   {status === "error" ? t.contact.form.error : null}
                 </div>
-              </div>
-            </form>
-          </Card>
-        ) : (
-          <Card className="p-6">
-            <div className="flex flex-col gap-4">
-              <div className="grid gap-1">
-                <p className="text-sm font-medium">{t.contact.mailLabel}</p>
-                <a
-                  className="text-sm text-muted-foreground underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                  href={`mailto:${site.email}`}
-                >
-                  {site.email}
-                </a>
-              </div>
+              </form>
+            </GradientCard>
 
-              <div className="flex flex-wrap gap-3">
-                <a
-                  className="inline-flex h-10 items-center justify-center rounded-full border border-border bg-background px-4 text-sm font-medium text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                  href={site.socials.github.href}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {site.socials.github.label}
-                </a>
-                <a
-                  className="inline-flex h-10 items-center justify-center rounded-full border border-border bg-background px-4 text-sm font-medium text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                  href={site.socials.linkedin.href}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {site.socials.linkedin.label}
-                </a>
-              </div>
+            <div className="mt-6 flex flex-wrap justify-center gap-3">
+              <a
+                className="inline-flex h-10 items-center justify-center gap-2 rounded-full border border-border bg-background/60 px-4 text-sm font-medium text-foreground backdrop-blur transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                href={`mailto:${site.email}`}
+              >
+                <Mail className="h-4 w-4" aria-hidden="true" />
+                {t.contact.mailLabel}
+              </a>
+              <a
+                className="inline-flex h-10 items-center justify-center gap-2 rounded-full border border-border bg-background/60 px-4 text-sm font-medium text-foreground backdrop-blur transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                href={site.socials.github.href}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Github className="h-4 w-4" aria-hidden="true" />
+                {site.socials.github.label}
+              </a>
+              <a
+                className="inline-flex h-10 items-center justify-center gap-2 rounded-full border border-border bg-background/60 px-4 text-sm font-medium text-foreground backdrop-blur transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                href={site.socials.linkedin.href}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Linkedin className="h-4 w-4" aria-hidden="true" />
+                {site.socials.linkedin.label}
+              </a>
             </div>
-          </Card>
+          </div>
+        ) : (
+          <div className="mx-auto w-full max-w-3xl">
+            <GradientCard innerClassName="p-6 sm:p-8">
+              <div className="flex flex-col gap-5">
+                <div className="grid gap-2">
+                  <p className="text-sm font-medium">{t.contact.mailLabel}</p>
+                  <a
+                    className="text-sm text-muted-foreground underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    href={`mailto:${site.email}`}
+                  >
+                    {site.email}
+                  </a>
+                </div>
+
+                <div className="flex flex-wrap gap-3">
+                  <a
+                    className="inline-flex h-10 items-center justify-center gap-2 rounded-full border border-border bg-background/60 px-4 text-sm font-medium text-foreground backdrop-blur transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    href={site.socials.github.href}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <Github className="h-4 w-4" aria-hidden="true" />
+                    {site.socials.github.label}
+                  </a>
+                  <a
+                    className="inline-flex h-10 items-center justify-center gap-2 rounded-full border border-border bg-background/60 px-4 text-sm font-medium text-foreground backdrop-blur transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    href={site.socials.linkedin.href}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <Linkedin className="h-4 w-4" aria-hidden="true" />
+                    {site.socials.linkedin.label}
+                  </a>
+                </div>
+              </div>
+            </GradientCard>
+          </div>
         )}
       </div>
     </SectionShell>
   );
 }
-

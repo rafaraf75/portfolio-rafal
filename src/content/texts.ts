@@ -46,8 +46,11 @@ export type Texts = {
   };
   contact: {
     title: string;
+    kicker: string;
     subtitle: string;
+    preferEmail: string;
     mailLabel: string;
+    consent: string;
     form: {
       name: string;
       email: string;
@@ -120,9 +123,12 @@ export const texts: Record<Locale, Texts> = {
     },
     contact: {
       title: "Kontakt",
+      kicker: "Opowiedz o swoim projekcie",
       subtitle:
         "Masz pomysł lub chcesz współpracować? Napisz — odpowiem możliwie szybko.",
+      preferEmail: "Wolisz e-mail? Napisz na",
       mailLabel: "Email",
+      consent: 'Klikając „Wyślij wiadomość” wyrażasz zgodę na kontakt mailowy.',
       form: {
         name: "Imię",
         email: "Email",
@@ -192,9 +198,12 @@ export const texts: Record<Locale, Texts> = {
     },
     contact: {
       title: "Contact",
+      kicker: "Tell me about your project",
       subtitle:
         "Have an idea or want to work together? Send a message — I’ll reply soon.",
+      preferEmail: "Prefer email? Write to",
       mailLabel: "Email",
+      consent: 'By clicking “Send message” you agree to be contacted by email.',
       form: {
         name: "Name",
         email: "Email",
@@ -264,9 +273,13 @@ export const texts: Record<Locale, Texts> = {
     },
     contact: {
       title: "Contacto",
+      kicker: "Cuéntame sobre tu proyecto",
       subtitle:
         "¿Tienes una idea o quieres colaborar? Escríbeme — responderé lo antes posible.",
+      preferEmail: "¿Prefieres email? Escríbeme a",
       mailLabel: "Email",
+      consent:
+        'Al hacer clic en “Enviar” aceptas que te contacte por correo electrónico.',
       form: {
         name: "Nombre",
         email: "Email",
